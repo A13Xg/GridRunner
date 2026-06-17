@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-green: #00ff41;
+  --neon-orange: #ff6600;
+  --neon-yellow: #ffff00;
+  --bg-primary: #050510;
+  --bg-secondary: #0a0a1a;
+  --bg-panel: #0d0d20;
+  --bg-border: #1a1a3a;
+  --text-primary: #e0e0ff;
+  --text-dim: #6060a0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Cyberpunk scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 2px;
+}
+
+/* Neon glow utilities */
+.glow-cyan {
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4), 0 0 16px rgba(0, 255, 255, 0.1);
+}
+.glow-magenta {
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.4), 0 0 16px rgba(255, 0, 255, 0.1);
+}
+.glow-green {
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4), 0 0 16px rgba(0, 255, 65, 0.1);
+}
+
+/* Panel base style */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--bg-border);
+}
+
+/* Scanline overlay effect */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Agent state pulse */
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.working-pulse {
+  animation: pulse-neon 1.2s ease-in-out infinite;
+}
